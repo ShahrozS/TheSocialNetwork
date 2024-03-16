@@ -173,7 +173,8 @@ return(
               type="text"
               {...field} />
             </FormControl>
-           
+            <FormMessage/>
+
           </FormItem>
         )}
       />
@@ -190,7 +191,7 @@ return(
               type="text"
               {...field} />
             </FormControl>
-           
+           <FormMessage/>
           </FormItem>
         )}
       />
@@ -207,7 +208,8 @@ return(
              rows={10}
               {...field} />
             </FormControl>
-           
+            <FormMessage/>
+
           </FormItem>
         )}
       />
