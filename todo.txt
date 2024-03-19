@@ -2,3 +2,10 @@
 
 --> back end start  
 
+
+
+
+
+i can have a check on each post if its occupied or not. if its occupied, delete it from the database. 
+or i can just delete it directly if the user joins it 
+

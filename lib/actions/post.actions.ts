@@ -43,3 +43,51 @@ export async function createPost({
     }
 
 }
+
+export async function fetchPosts(pageNumber = 1,pageSize = 20) {
+    
+
+   
+        connectToDB();
+
+        //calculating the posts to skip for finding the page we  are on
+
+        const skipAmount  = (pageNumber -1)*pageSize;
+
+
+        const postsQuery = Post.find({}).sort({createdAt:'desc'}).skip(skipAmount).limit(pageSize).populate({path:'author',model:User});
+   
+        const totalPostsCount = await Post.countDocuments({});
+   
+        const posts =  await postsQuery.exec();
+   
+        const isNext = totalPostsCount > skipAmount + posts.length; 
+   
+        return {posts,isNext};
+   
+ 
+}
+
+
+
+export async function fetchPostById(id : string){
+    connectToDB();
+
+    try{
+
+
+        const post = await Post.findById(id)
+        .populate({
+            path:'author',
+            model :User,
+            select: "_id id name image"
+        }).exec();
+
+        return post;
+    
+    }
+    catch(err){
+
+        throw new Error('Error Fetching the post : ${error.message}')
+    }
+}
