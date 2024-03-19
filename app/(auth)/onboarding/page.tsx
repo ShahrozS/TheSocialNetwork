@@ -1,18 +1,28 @@
 import AccountProfile from "@/components/forms/AccountProfile";
+import { fetchUser } from "@/lib/actions/user.actions";
 
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 async function Page(){
 
     const user  = await currentUser();
-    
+    if (!user) return null; 
 
-    const userInfo  = {};
-    
+
+    const userInfo = await fetchUser(user.id);
+    if (userInfo?.onboarded) redirect("/");
+
+    const email = user.emailAddresses?.map((emailAddress) => (
+                  emailAddress.emailAddress));
+
+     
+
+
     const userData = {
         id: user?.id,
-        objextId: userInfo?._id,
-        username: userInfo?.username || user?.username,
+        objectId: userInfo?._id,
+        username: userInfo?.username || email[0],
         name: userInfo?.name || user?.firstName || "",
         bio: userInfo?.bio || "",
         image: userInfo?.image || user?.imageUrl,

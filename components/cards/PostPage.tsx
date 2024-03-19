@@ -17,7 +17,7 @@ interface Props{
     timeEnd :string; 
 }
 
-const ThreadPage = ({
+const PostPage = ({
   
     id,
     currentUserId,
@@ -65,4 +65,4 @@ const ThreadPage = ({
     )
 }
 
-export default ThreadPage;
+export default PostPage;

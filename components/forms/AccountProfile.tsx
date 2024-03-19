@@ -52,7 +52,7 @@ const form = useForm({
     defaultValues: {
         profile_photo: user?.image || "",
         name: user?.name || "",
-        username:user ?.username || "",
+        username:user?.username || "",
         bio: user?.bio || "",
         }
 })
@@ -184,12 +184,12 @@ return(
         render={({ field }) => (
             <FormItem className="flex  flex-col w-full gap-3">
             <FormLabel className="text-base-semibold text-light-2">
-          Username
+          Email
             </FormLabel>
             <FormControl className="">
               <Input  className="account-form_input no focus"
               type="text"
-              {...field} />
+              {...field} disabled/>
             </FormControl>
            <FormMessage/>
           </FormItem>

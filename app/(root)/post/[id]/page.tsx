@@ -1,4 +1,4 @@
-import ThreadPage from '@/components/cards/ThreadPage';
+import PostPage from '@/components/cards/PostPage';
 import { fetchPostById } from '@/lib/actions/post.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 import {currentUser} from '@clerk/nextjs'; 
@@ -22,7 +22,7 @@ const Page = async ({params}:{params:{id:string}}) =>{
 
 
 return(
-    <ThreadPage
+    <PostPage
             key={post._id}
             id={post._id}
             currentUserId={user?.id || ""}

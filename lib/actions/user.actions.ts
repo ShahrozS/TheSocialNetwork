@@ -4,6 +4,7 @@ import { promises } from "dns";
 import { connectToDB } from "../mongoose";
 import User from "../models/user.model";
 import { revalidatePath } from "next/cache";
+import Post from "../models/post.model";
 
 
 
@@ -55,5 +56,26 @@ export async function updateUser({
         return await User.findOne({id:userId})
     } catch (error:any){
         console.log(error);
+    }
+  }
+
+
+  export async function fetchUserPosts(userId:string){
+
+    try{
+
+      connectToDB();
+
+      const posts = await User.findOne({id:userId})
+      .populate({
+        path:'posts',
+        model: Post,
+      });
+
+return posts;
+    }
+    catch(err :any){
+
+      throw new Error('Fialed to load posts : ' + err);
     }
   }

@@ -1,6 +1,6 @@
 
 
-import ThreadCard from "@/components/cards/ThreadCard";
+import PostCard from "@/components/cards/PostCard";
 import { fetchPosts } from "@/lib/actions/post.actions";
 import { UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs";
@@ -23,7 +23,7 @@ console.log(result);
         ):(
           <>
           {result.posts.map((post)=> (
-            <ThreadCard
+            <PostCard
             key={post._id}
             id={post._id}
             currentUserId={user?.id || ""}

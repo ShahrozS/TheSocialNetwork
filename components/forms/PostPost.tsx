@@ -28,7 +28,7 @@ interface Props {
     userId: string;
   }
   
-  function PostThread({ userId }: Props) {
+  function PostPost({ userId }: Props) {
  
     const router = useRouter();
     const pathname = usePathname();
@@ -166,4 +166,4 @@ return (
 }
 
 
-export default PostThread;
+export default PostPost;
