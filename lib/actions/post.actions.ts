@@ -86,8 +86,8 @@ export async function fetchPostById(id : string){
         return post;
     
     }
-    catch(err){
+    catch(err:any){
 
-        throw new Error('Error Fetching the post : ${error.message}')
+        throw new Error(`Error Fetching the post : ${err.message}`)
     }
 }

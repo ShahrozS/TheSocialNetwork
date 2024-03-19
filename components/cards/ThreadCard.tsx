@@ -47,7 +47,7 @@ const ThreadCard = ({
     </div>
 
 <Link
-href={"/post/${id}"}
+href={`/post/${id}`}
 >
         <button className=" bg-slate-600 mr-6 text-light-2 rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Join!</button>
         </Link>

@@ -44,6 +44,20 @@ module.exports = {
           fontWeight: "600",
         },
       ],
+      "heading-large": [
+        "72px",
+        {
+          lineHeight: "140%",
+          fontWeight: "700",
+        },
+      ],
+      "heading-md": [
+        "32px",
+        {
+          lineHeight: "140%",
+          fontWeight: "600",
+        },
+      ],
       "heading3-bold": [
         "24px",
         {

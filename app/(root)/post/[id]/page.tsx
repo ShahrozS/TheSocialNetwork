@@ -1,3 +1,4 @@
+import ThreadPage from '@/components/cards/ThreadPage';
 import { fetchPostById } from '@/lib/actions/post.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 import {currentUser} from '@clerk/nextjs'; 
@@ -16,13 +17,23 @@ const Page = async ({params}:{params:{id:string}}) =>{
     const userInfo = await fetchUser(user.id);
     if(!userInfo?.onboarded) redirect('/onboarding');
 
-    const post = await fetchPostById(user.id);
+    const post = await fetchPostById(params.id);
+    console.log(params.id);
 
 
 return(
-    <section>
-        <h1 className="text-heading1-bold"></h1>
-    </section>
+    <ThreadPage
+            key={post._id}
+            id={post._id}
+            currentUserId={user?.id || ""}
+            content = {post.text}
+            author = {post.author}
+            createdAt = {post.createdAt}
+            venue = {post.venue}
+            timeStart = {post.timeStart}
+            timeEnd = {post.timeEnd}
+
+   />
 
 )
 }
