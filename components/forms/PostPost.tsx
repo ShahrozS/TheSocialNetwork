@@ -41,8 +41,9 @@ const form = useForm({
        timeStart:'',
        timeEnd:'',
        accountId:userId,
-
-        },
+       isOccupied:false,
+      occupiedBy:userId
+            },
 });
 
 //    text,author,venue,timeStart,timeEnd,path
@@ -52,13 +53,19 @@ console.log("sajodpdasads");
 console.log(values.timeStart + " - " + values.timeEnd);
 
 console.log(values.timeStart + " - " + values.timeEnd);
+
+console.log(values.occupiedBy + " - " + values.isOccupied);
+
     await createPost(
  {   text: values.post,
     author:userId,
     venue:values.venue,
     timeStart:values.timeStart,
     timeEnd:values.timeEnd,
-    path:pathname}
+    path:pathname,
+    isOccupied:values.isOccupied,
+    occupiedBy:userId,
+  }
 );
 
 router.push("/");

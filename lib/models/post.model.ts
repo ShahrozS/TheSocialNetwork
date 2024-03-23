@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { boolean } from 'zod';
 
 
 const postSchema = new mongoose.Schema({
@@ -16,6 +17,13 @@ const postSchema = new mongoose.Schema({
     createdAt:{
         type:Date,
         default: Date.now,
+    },
+    isOccupied:{
+        type:Boolean,
+        required:true,
+    },
+    occupiedBy:{
+        type: String,
     }
 
 

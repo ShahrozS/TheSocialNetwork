@@ -32,6 +32,7 @@ return(
             venue = {post.venue}
             timeStart = {post.timeStart}
             timeEnd = {post.timeEnd}
+            isOccupied = {post.isOccupied}
 
    />
 

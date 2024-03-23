@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import Post from "../models/post.model";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
+import { fetchUser } from "./user.actions";
 
 interface Params{
     text: string,
@@ -13,12 +14,14 @@ interface Params{
 
     timeStart:string,
     timeEnd:String,
+    isOccupied:Boolean,
+    occupiedBy:string,
     path: string,
 }
 
 export async function createPost({
 
-    text,author,venue,timeStart,timeEnd,path
+    text,author,venue,timeStart,timeEnd,isOccupied,path,occupiedBy
 
 }:Params){
 
@@ -26,7 +29,7 @@ export async function createPost({
         connectToDB();
 
         const createdPost = await Post.create({
-            text,author,venue,timeStart,timeEnd,
+            text,author,venue,timeStart,timeEnd,isOccupied,occupiedBy
         });
         
         
@@ -91,3 +94,28 @@ export async function fetchPostById(id : string){
         throw new Error(`Error Fetching the post : ${err.message}`)
     }
 }
+
+    export async function updateOccupationById(id:string,isOccupied:boolean,occupiedBy?:string){
+    try{connectToDB();
+
+
+    // const user =  await fetchUser(occupiedBy);
+
+
+    const userId = occupiedBy ? occupiedBy : null; 
+  await  Post.updateOne(
+        {_id:id},
+        {$set:{isOccupied,occupiedBy:userId}}
+    );
+    
+            
+    console.log('post updated successfully' +isOccupied + " " + userId);
+    }
+    catch(err:any){
+        console.log(`Cant update the post:  ${err}` );
+    }
+
+    }
+
+
+

@@ -10,4 +10,4 @@ i can have a check on each post if its occupied or not. if its occupied, delete 
 or i can just delete it directly if the user joins it 
 
 
-4:01:59
+4:15:26

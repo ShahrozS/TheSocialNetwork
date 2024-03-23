@@ -45,7 +45,7 @@ module.exports = {
         },
       ],
       "heading-large": [
-        "72px",
+        "62px",
         {
           lineHeight: "140%",
           fontWeight: "700",

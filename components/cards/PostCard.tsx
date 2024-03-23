@@ -1,3 +1,6 @@
+
+
+import { updateOccupationById } from "@/lib/actions/post.actions";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,6 +33,13 @@ const PostCard = ({
 
 }:Props) =>{
 
+
+
+
+  
+
+
+
     return (
         <article className ="flex w-full  items-center flex-row  justify-between rounded-xl bg-dark-2 p-7" >
 
@@ -49,7 +59,7 @@ const PostCard = ({
 <Link
 href={`/post/${id}`}
 >
-        <button className=" bg-slate-600 mr-6 text-light-2 rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Join!</button>
+        <button  className=" bg-slate-600 mr-6 text-light-2 rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Join!</button>
         </Link>
         </article>
     )
