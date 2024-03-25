@@ -1,11 +1,4 @@
-import ChatInput from "@/components/chat-input";
-import Messages from "@/components/messages";
-import { createChat, getChatMessages } from "@/lib/actions/chat.actions";
-import { fetchUser } from "@/lib/actions/user.actions";
-import { chatHrefConstructor } from "@/lib/utils";
-import { Session, currentUser } from "@clerk/nextjs/server";
-import Image from "next/image";
-import { redirect } from "next/navigation";
+import Chat from "@/components/chat";
 
 
 
@@ -13,72 +6,13 @@ import { redirect } from "next/navigation";
 const Page = async ({params}:{params:{chatid:string}}) =>{
 
 
-const [userId1,userId2] = params.chatid.split('--');
-
-const user  = await currentUser();
-if (!user) return null; 
 
 
-const userInfo = await fetchUser(user.id);
-if (!userInfo?.onboarded) redirect("/");
-if(user.id!==userId1 && user.id !==  userId2){
-    console.log("Redirecting")
-redirect("/");
-}
-
-const chatPartnerId = user.id===userId1 ? userId2 :userId1
-
-const chatPartner = await fetchUser(chatPartnerId);
-console.log("--->"+chatPartner)
-
-createChat(chatHrefConstructor(chatPartnerId,user.id));
-
-const initialMessages = await getChatMessages(params.chatid);
-console.log("Message: "+ initialMessages);
-
-if(!initialMessages){
-    return null;
-}
-    return(
-     <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-6rem)] ">
-        <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
-            <div className="relative flex items-start space-x-4">
-
-<div className="relative">
-    <div className="relative w-8 sm:w-12 h-8 sm:h-12">
-
-    <Image
-fill
-referrerPolicy='no-referrer'
-src={chatPartner.image}
-alt = {"profile picture"}
-className='rounded-full'
-/> 
-
-    </div>
-</div>
-<div className="flex flex-col leading-tight">
-    <div className="text-base1-semibold fkex items-center">
-        <span className="text-gray-700 mr-3 font-semibold">
-            {chatPartner.name}
-        </span>
-    </div>
-<span className="text-sm text-gray-600">{chatPartner.username}</span>
-
-</div>
-
-            </div>
-
-
-        </div>
-
-
-<Messages chatId={params.chatid} userId={userInfo._id.toString()} initialMessages={initialMessages}/>
-<ChatInput chatId={params.chatid}/>
-     </div>
-    )
-
-
+return(
+    <>
+    <Chat chatid={params.chatid}/>
+    </>
+)
 
 
 
