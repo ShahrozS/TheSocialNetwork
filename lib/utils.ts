@@ -37,3 +37,14 @@ export function formatPostCount(count: number): string {
     return `${postCount} ${postWord}`;
   }
 }
+
+
+export function toPusherKey(key: string) {
+  return key.replace(/:/g, '__')
+}
+
+export function chatHrefConstructor(id1: string, id2: string) {
+  const sortedIds = [id1, id2].sort()
+  console.log(sortedIds)
+  return `${sortedIds[0]}--${sortedIds[1]}`
+}

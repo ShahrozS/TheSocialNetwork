@@ -63,6 +63,7 @@ export async function fetchPosts(pageNumber = 1,pageSize = 20) {
         const totalPostsCount = await Post.countDocuments({});
    
         const posts =  await postsQuery.exec();
+       
    
         const isNext = totalPostsCount > skipAmount + posts.length; 
    
@@ -101,6 +102,7 @@ export async function fetchPostById(id : string){
 
     // const user =  await fetchUser(occupiedBy);
 
+    
 
     const userId = occupiedBy ? occupiedBy : null; 
   await  Post.updateOne(
@@ -112,7 +114,9 @@ export async function fetchPostById(id : string){
     console.log('post updated successfully' +isOccupied + " " + userId);
     }
     catch(err:any){
-        console.log(`Cant update the post:  ${err}` );
+        
+        console.log(`${occupiedBy}Cant update the post:  ${err}` );
+
     }
 
     }

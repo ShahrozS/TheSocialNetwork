@@ -1,4 +1,6 @@
+import { createChat } from "@/lib/actions/chat.actions";
 import { updateOccupationById } from "@/lib/actions/post.actions";
+import { chatHrefConstructor } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,6 +19,7 @@ interface Props{
     timeStart :string;
     timeEnd :string; 
     isOccupied:boolean;
+    occupiedBy:string;
 }
 
 const PostPage = ({
@@ -30,14 +33,23 @@ const PostPage = ({
     timeStart,
     timeEnd,
     isOccupied,
+    occupiedBy
 
 }:Props) =>{
 
+    const handle = () =>{
+        createChat(chatHrefConstructor(author.id,occupiedBy));
+    }
+
     if(!isOccupied)
 {
+    if(currentUserId!=author.id){
+
+    
        updateOccupationById(id,true,currentUserId);
-}else{
-    console.log("Post is already  updated!")
+    }
+    }else{
+    console.log("Post is already  updated!" + currentUserId)
 }
     return (
     
@@ -67,14 +79,21 @@ const PostPage = ({
             </div>
 
             <div className="flex flex-row mt-52 mr-3 mb-3 self-end" >
+               
+               
                 <p className="text-light-2 mt-4 mr-3 text-body-semibold">Chat with {author.name}</p>
+               
+                <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+            
                 <Image
                     src={'/assets/chat.svg'}
                     alt='chat'
                     width={54}
                     height={54}
-                    className="cursor-pointer text-white"
+                    className="cursor-pointer text-white"           
                 />
+                </Link>
+                
             </div>
 
         </div>

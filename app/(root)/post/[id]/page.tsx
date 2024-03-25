@@ -33,6 +33,7 @@ return(
             timeStart = {post.timeStart}
             timeEnd = {post.timeEnd}
             isOccupied = {post.isOccupied}
+            occupiedBy = {post.occupiedBy}
 
    />
 
