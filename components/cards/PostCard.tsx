@@ -33,7 +33,7 @@ const PostCard = ({
 
 }:Props) =>{
 
-
+console.log("AUTHOR:::"+ currentUserId)
     return (
         <article className ="flex w-full  items-center flex-row  justify-between rounded-xl bg-dark-2 p-7" >
 

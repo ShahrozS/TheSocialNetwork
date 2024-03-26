@@ -42,7 +42,8 @@ const Chat = async ({chatid}:props)=>{
         return null;
     }
         return(
-         <div className="flex-1 justify-between flex flex-col h-full max-h-[calc(100vh-10rem)] sm:max-h-[calc(100vh-15rem)]  xs:max-h-[calc(100vh-19rem)] overflow-hidden">
+            <section>
+         <div className="flex-1 justify-between flex flex-col max-h-[83vh] min-w-[0] md:max-h-[83vh] lg:max-h-[80vh]  sm:max-h-[73vh] xs:max-h-[75vh] overflow-y-hidden">
             <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
                 <div className="relative flex items-start space-x-4">
     
@@ -78,6 +79,7 @@ const Chat = async ({chatid}:props)=>{
     <Messages chatId={chatid} userId={userInfo._id.toString()} initialMessages={initialMessages}/>
     <ChatInput chatId={chatid}/>
          </div>
+         </section>
         )
     
 }
