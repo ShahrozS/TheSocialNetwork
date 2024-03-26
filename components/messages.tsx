@@ -48,6 +48,7 @@ pusherClient.subscribe(
 
 },[])
 
+
 const formatTimeStamp = (timestamp:Date)=>{
     return format(timestamp,' p')
 }
@@ -71,8 +72,8 @@ return (
                         'order-2 items-start':!isCurrentUser,
                     })}>
                         <span className={cn('px-4 py-2 rounded-lg inline-block max-w-96   text-wrap break-words',{
-                            'bg-indigo-600 text-white': !isCurrentUser,
-                            'bg-gray-200 text-gray-900':isCurrentUser,
+                            'bg-bg-secondary text-white': !isCurrentUser,
+                            'bg-gray-300 text-gray-900':isCurrentUser,
                             'rounded-br-none':!hasNextMessageFromSameUser&&isCurrentUser,
                             'rounded-bl-none' :!hasNextMessageFromSameUser && !isCurrentUser,
                         })}>

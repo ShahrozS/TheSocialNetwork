@@ -17,7 +17,6 @@ console.log(result);
   return (
     <>
       
-      <h1 className="head-text text-left">Home</h1>
       <section className="mt-9 flex flex-col gap-10">
         {result.posts.length === 0 ?(
           <p className="no-result">No Posts Found</p>
@@ -26,7 +25,7 @@ console.log(result);
 
 <div className="flex items-center justify-start text-start">
   <div className="border-b border-light-2 w-10"></div>
-  <h1 className="text-light-2 text-heading4-medium px-4">Your Active Posts</h1>
+  <h1 className="text-light-2 text-heading-md px-4">Your Active Posts</h1>
   <div className="flex-grow border-b border-light-2"></div>
 </div>
           {result.posts.filter(post =>post.author.id === (user?.id||"")).map(post=>(
@@ -48,7 +47,7 @@ console.log(result);
 
 <div className="flex items-center justify-start text-start">
   <div className="border-b border-light-2 w-10"></div>
-  <h1 className="text-light-2 text-heading4-medium px-4">Recent Posted Activities</h1>
+  <h1 className="text-light-2 text-heading-md  px-4">Recent Posted Activities</h1>
   <div className="flex-grow border-b border-light-2"></div>
 </div>       
          {result.posts.filter(post =>post.author.id !== (user?.id||"")).map(post=>(

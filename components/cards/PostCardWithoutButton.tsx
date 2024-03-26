@@ -31,11 +31,11 @@ const PostCardWithoutButton = ({
 }:Props) =>{
 
     return (
-        <article className ="flex w-full  items-center flex-row  justify-between rounded-xl bg-dark-2 p-7" >
+        <article className ="flex w-full  items-center flex-row  justify-between rounded-xl bg-bg-secondary p-7" >
 
 <div className="flex flex-col">
 
-    <h2 className=" head-text text-light-2">
+    <h2 className=" text-head-text-1 text-light-2">
         {content}
     </h2>
     <h4 className="text-base1-semibold text-light-2">

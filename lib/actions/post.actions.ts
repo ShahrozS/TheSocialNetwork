@@ -13,27 +13,31 @@ interface Params{
     venue:string,
 
     timeStart:string,
-    timeEnd:String,
+    timeEnd:string,
     isOccupied:Boolean,
     occupiedBy:string,
     path: string,
+    expireAt:Date
 }
 
 export async function createPost({
 
-    text,author,venue,timeStart,timeEnd,isOccupied,path,occupiedBy
+    text,author,venue,timeStart,timeEnd,isOccupied,path,occupiedBy,expireAt
 
 }:Params){
 
     try{
         connectToDB();
 
+        expireAt = new Date(expireAt);
+        console.log("Expiriyt in database: " + expireAt);
         const createdPost = await Post.create({
-            text,author,venue,timeStart,timeEnd,isOccupied,occupiedBy
+            text,author,venue,timeStart,timeEnd,isOccupied,occupiedBy,expireAt
         });
         
         
         //update user
+        console.log("Post that was created:  " + createdPost )
         
         await User.findByIdAndUpdate(author,{
             $push:{posts:createdPost._id}
@@ -42,7 +46,7 @@ export async function createPost({
         revalidatePath(path);
     }
     catch(error:any){
-        throw new Error('error creating post: ',error)
+        console.log('error creating post: ',error)
     }
 
 }

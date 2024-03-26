@@ -13,7 +13,7 @@ async function Topbar   (){
     <Link href="/" className="flex items-center gap-4">
 
         <Image src="/assets/logo.svg" alt ="logo" width = {28} height = {28}></Image>
-        <p className="text-heading3-bold text-light-1 max-xs:hidden">TheSocialNetwork</p>
+        <p className="text-heading3-bold text-[#f3f0ed] max-xs:hidden">TheSocialNetwork</p>
     </Link>
 
 
@@ -59,7 +59,7 @@ async function Topbar   (){
                 width={25}  
                 height={15}
                 />
-               <h4 className="cursor-pointer text-base-semibold text-light-1">{user.name}</h4>
+               <h4 className="cursor-pointer text-base-semibold text-[#f3f0ed]">{user.name}</h4>
               
                 </Link>
     </div>

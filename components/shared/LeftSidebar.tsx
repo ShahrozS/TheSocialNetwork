@@ -32,11 +32,11 @@ const LeftSidebar = () => {
               <Image
                 src={link.imgURL}
                 alt={link.label}
-                width={24}
-                height={24}
+                width={34}
+                height={34}
               />
 
-              <p className='text-light-1 max-lg:hidden'>{link.label}</p>
+              <p className='text-[#f3f0ed] text-center self-center   max-lg:hidden'>{link.label}</p>
             </Link>
           );
         })}
@@ -49,11 +49,11 @@ const LeftSidebar = () => {
               <Image
                 src='/assets/logout.svg'
                 alt='logout'
-                width={24}
-                height={24}
+                width={34}
+                height={34}
               />
 
-              <p className='text-light-2 max-lg:hidden'>Logout</p>
+              <p className='text-[#f3f0ed]  text-center max-lg:hidden'>Logout</p>
             </div>
           </SignOutButton>
         </SignedIn>

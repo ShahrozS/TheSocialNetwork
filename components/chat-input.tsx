@@ -34,7 +34,7 @@ if(!input) return
     return ( 
 
         <div className=" flex flex-row border-gray-200 px-4 pt-4 mb-2 ">
-            <div className=" flex-1 overflow-hidden rounded-lg flex flex-row shadow-sm ring-1  ring-white  focus-within:ring-gray-500">
+            <div className=" flex-1 overflow-hidden rounded-lg flex flex-row shadow-sm ring-2  ring-black   focus-within:ring-gray-500">
                 <TextareaAutosize ref={textareaRef} onKeyDown={(e)=>{
                     if(e.key==='Enter' && !e.shiftKey){
                         e.preventDefault()
@@ -48,7 +48,7 @@ if(!input) return
                 onChange={(e)=>setInput(e.target.value)}
 
                 placeholder={"Initiate a convo!"}
-                className="block w-full border-none outline-none text-white  resize-none bg-transparent  placeholder:text-white  sm:py-1.g sm:text-small sm:leading-6  p-3 "
+                className="block w-full border-none outline-none text-dark-1 resize-none bg-transparent  placeholder:text-dark-1 sm:py-1.g sm:text-small sm:leading-6  p-3 "
                 />
                 
                 <div onClick={()=>textareaRef.current?.focus()}

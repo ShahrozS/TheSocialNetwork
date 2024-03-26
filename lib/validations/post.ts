@@ -10,5 +10,6 @@ export const PostValidation = z.object({
     timeEnd: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/),
     accountId:z.string(),
     isOccupied:z.boolean(),
-    occupiedBy:z.string()
+    occupiedBy:z.string(),
+    expireAt:z.date(),
 })

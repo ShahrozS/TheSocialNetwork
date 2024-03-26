@@ -136,3 +136,6 @@ export default Page;
 
 //user_2dv2q4BTQZkpRegXO4GUlBmLMl8--user_2dv2q4BTQZkpRegXO4GUlBmLMl8
 //user_2ddohQApYzZogeLX0DB7OVskOwL--user_2dv2q4BTQZkpRegXO4GUlBmLMl8
+
+
+remove occupied posts from the home 

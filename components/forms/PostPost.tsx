@@ -33,6 +33,7 @@ interface Props {
     const router = useRouter();
     const pathname = usePathname();
 
+  
 const form = useForm({
     resolver: zodResolver(PostValidation),
     defaultValues: {
@@ -42,7 +43,8 @@ const form = useForm({
        timeEnd:'',
        accountId:userId,
        isOccupied:false,
-      occupiedBy:userId
+      occupiedBy:userId,
+      expireAt:new Date(Date.now() + 1000 * 60 * 60),
             },
 });
 
@@ -55,6 +57,16 @@ console.log(values.timeStart + " - " + values.timeEnd);
 console.log(values.timeStart + " - " + values.timeEnd);
 
 console.log(values.occupiedBy + " - " + values.isOccupied);
+const EndTimeString = values.timeEnd;
+const [hours, minutes] = EndTimeString.split(":").map(Number);
+
+const timeEnd = new Date();
+timeEnd.setHours(hours);
+timeEnd.setMinutes(minutes);
+
+const expireAt = timeEnd;
+console.log("Expiry: "+ expireAt)
+
 
     await createPost(
  {   text: values.post,
@@ -65,6 +77,7 @@ console.log(values.occupiedBy + " - " + values.isOccupied);
     path:pathname,
     isOccupied:values.isOccupied,
     occupiedBy:userId,
+    expireAt:expireAt,
   }
 );
 
@@ -162,7 +175,7 @@ return (
         )}
       />
       </div>
-<Button type="submit" className="bg-primary-500">Post Activity</Button>
+<Button type="submit" className="bg-button">Post Activity</Button>
 
 
     </form>

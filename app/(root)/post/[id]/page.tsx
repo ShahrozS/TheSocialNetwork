@@ -20,6 +20,7 @@ const Page = async ({params}:{params:{id:string}}) =>{
     const post = await fetchPostById(params.id);
     console.log(params.id);
 
+    if(!post) redirect('/');
 
 return(
     <PostPage

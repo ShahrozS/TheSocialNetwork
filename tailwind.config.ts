@@ -16,6 +16,13 @@ module.exports = {
       },
     },
     fontSize: {
+      "head-text-1":[
+        "36px",
+        {
+          lineHeight:"140%",
+          fontWeight:"700",
+        },
+      ],
       "heading1-bold": [
         "36px",
         {
@@ -186,9 +193,18 @@ module.exports = {
       ],
     },
     extend: {
+    
       colors: {
+        "bg-secondary":"#382c44",
+        "bg-primary":"#fff4e4",
+        "bg-button":"#c0b4c4",
+        "bg-bars":"#605474",
+        "text-large":"#f0dc9c",
+
+    
         "primary-500": "#877EFF",
         "secondary-500": "#FFB620",
+
         blue: "#0095F6",
         "logout-btn": "#FF5A5A",
         "navbar-menu": "rgba(16, 16, 18, 0.6)",
@@ -196,11 +212,12 @@ module.exports = {
         "dark-2": "#121417",
         "dark-3": "#101012",
         "dark-4": "#1F1F22",
-        "light-1": "#FFFFFF",
-        "light-2": "#EFEFEF",
+        "light-1": "#1A1212",
+        "light-2": "#1A1212",
         "light-3": "#7878A3",
         "light-4": "#5C5C7B",
         "gray-1": "#697C89",
+        "button":"#1A1212",
         glassmorphism: "rgba(16, 16, 18, 0.60)",
       },
       boxShadow: {

@@ -44,7 +44,7 @@ const Chat = async ({chatid}:props)=>{
         return(
             <section>
          <div className="flex-1 justify-between flex flex-col max-h-[83vh] min-w-[0] md:max-h-[83vh] lg:max-h-[80vh]  sm:max-h-[73vh] xs:max-h-[75vh] overflow-y-hidden">
-            <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+            <div className="flex sm:items-center justify-between py-3 border-b-2 border-dark-1 shadow-lg ">
                 <div className="relative flex items-start space-x-4">
     
     <div className="relative">
@@ -62,11 +62,11 @@ const Chat = async ({chatid}:props)=>{
     </div>
     <div className="flex flex-col leading-tight">
         <div className="text-heading4-medium flex items-center">
-            <span className="text-white mr-3 font-semibold">
+            <span className="text-dark-1 mr-3 font-semibold">
                 {chatPartner.name}
             </span>
         </div>
-    <span className=" text-gray-400">{chatPartner.username}</span>
+    <span className=" text-dark-2">{chatPartner.username}</span>
     
     </div>
     

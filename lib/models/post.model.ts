@@ -24,10 +24,17 @@ const postSchema = new mongoose.Schema({
     },
     occupiedBy:{
         type: String,
+    },
+
+    expireAt:{
+        type:Date,
+        index: { expires: 0 }
     }
 
 
-});
+}, { autoIndex: true });
+
+postSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
 
 
 const Post = mongoose.models.Post || mongoose.model('Post',postSchema);
