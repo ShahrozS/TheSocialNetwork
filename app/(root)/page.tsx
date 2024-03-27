@@ -5,6 +5,7 @@ import { fetchPosts } from "@/lib/actions/post.actions";
 import { UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { useState } from "react";
  
 export default  async  function Home() {
 
@@ -12,6 +13,10 @@ const user = await currentUser();
 
 if(user==null) redirect('/sign-in')
 const result =  await fetchPosts(1,30);
+
+
+
+
 
 console.log(result);
   return (

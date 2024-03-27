@@ -5,6 +5,9 @@ import Post from "../models/post.model";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
 import { fetchUser } from "./user.actions";
+import { pusherServer } from "../pusher";
+import { Document } from "mongoose";
+import { toPusherKey } from "../utils";
 
 interface Params{
     text: string,
@@ -43,6 +46,11 @@ export async function createPost({
             $push:{posts:createdPost._id}
         });
         
+
+// pusherServer.trigger(
+//     toPusherKey(`post:${}`)
+// )
+
         revalidatePath(path);
     }
     catch(error:any){
@@ -106,17 +114,29 @@ export async function fetchPostById(id : string){
 
     // const user =  await fetchUser(occupiedBy);
 
+
+
     
 
     const userId = occupiedBy ? occupiedBy : null; 
-  await  Post.updateOne(
+ const post =  await  Post.findByIdAndUpdate(
         {_id:id},
-        {$set:{isOccupied,occupiedBy:userId}}
+        {$set:{isOccupied,occupiedBy:userId}},
+        {new:true}
     );
     
+
+    const newPost = await fetchPostById(id);
+    
+
+
+
             
     console.log('post updated successfully' +isOccupied + " " + userId);
-    }
+
+    pusherServer.trigger(toPusherKey(`user:${newPost.author.id}:posts`), 'postOccupied', newPost);
+
+}
     catch(err:any){
         
         console.log(`${occupiedBy}Cant update the post:  ${err}` );

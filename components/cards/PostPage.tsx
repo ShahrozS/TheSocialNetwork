@@ -1,3 +1,4 @@
+
 import { createChat } from "@/lib/actions/chat.actions";
 import { updateOccupationById } from "@/lib/actions/post.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
@@ -5,6 +6,8 @@ import { chatHrefConstructor } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import {toast} from "react-hot-toast";
+import OccupiedByToast from "../toast/occupiedbytoast";
 
 interface Props{
 
@@ -38,7 +41,7 @@ const PostPage = async ({
     occupiedBy
 
 }:Props) =>{
-
+   
     const handle = () =>{
         createChat(chatHrefConstructor(author.id,occupiedBy));
     }
@@ -49,6 +52,8 @@ const PostPage = async ({
 
     
        updateOccupationById(id,true,currentUserId);
+
+
     }
     }else{
     console.log("Post is already  updated!" + currentUserId)
@@ -104,7 +109,7 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
             <div className="flex flex-row mt-52 mr-3 mb-3 self-end" >
                
 
-           {
+           {/* {
             !occupiedByGuy? (  <></>
             ):
             occupiedBy && currentUserId===author.id && occupiedByGuy?(
@@ -135,7 +140,43 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
            </> 
            
            
-           )}    
+           )}     */}
+
+
+           {
+           
+            currentUserId!==author.id?(
+                <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold">Confused about the location? Have a chat with {author.name}</p>
+           <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+            
+           <Image
+               src={'/assets/chat.svg'}
+               alt='chat'
+               width={54}
+               height={54}
+               className="cursor-pointer text-white"           
+           />
+           </Link>
+           </> 
+           
+           
+            )
+            :
+            occupiedByGuy && currentUserId == author.id?(
+                <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold"> Chat with {occupiedByGuy.name}</p>
+                <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+                 
+                <Image
+                    src={'/assets/chat.svg'}
+                    alt='chat'
+                    width={54}
+                    height={54}
+                    className="cursor-pointer text-white"           
+                />
+                </Link>
+                </> 
+            ):(<></>)
+           }
                
 {/*             
             {occupiedByGuy?():(<></>)}

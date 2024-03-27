@@ -139,3 +139,6 @@ export default Page;
 
 
 remove occupied posts from the home 
+
+
+//implement pusher funcitons

@@ -72,6 +72,7 @@ export async function updateUser({
         model: Post,
       });
 
+      
 return posts;
     }
     catch(err :any){

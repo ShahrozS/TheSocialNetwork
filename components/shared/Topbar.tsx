@@ -1,13 +1,119 @@
+
+'use client'
+
 import { fetchUser } from "@/lib/actions/user.actions";
+import { pusherClient } from "@/lib/pusher";
+import { toPusherKey } from "@/lib/utils";
 import { OrganizationSwitcher, SignOutButton, SignedIn, currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import path from "path";
+import { useEffect, useState } from "react";
+import {toast} from "react-hot-toast";
+import OccupiedByToast from "../toast/occupiedbytoast";
+import Post from "@/lib/models/post.model";
 
-async function Topbar   (){
-    const userid = await currentUser();
+import { Document } from "mongoose";
+
+
+
+interface ExtendedPost{
+id:string;
+}
+
+interface User{
+    id: string;
+    username: string;
+    name: string;
+    bio: string;
+    image: string;
+    onboarded: boolean;
+}
+interface Post{
+    _id:string;
+    text: string;
+    author: User;
+    venue: string;
+    timeStart: string;
+    timeEnd: string;
+    createdAt: Date;
+    isOccupied: boolean;
+    occupiedBy?: string;
+    expireAt?: Date;
+}
+interface topbarprops{
+    userid:string,
+    user: Partial<User>,
+
+}
+
+ function Topbar   ({userid,user}:topbarprops){
     if(userid==null) return;
-    const user =  await fetchUser(userid.id);
     
+
+ const imagelink = user.image?user.image:""; 
+
+
+
+    console.log( " User--> " + user)
+    
+
+    // useEffect(()=>{
+
+    //     pusherClient.subscribe(toPusherKey(`user:${userid}:posts`))
+
+    //     pusherClient.subscribe(toPusherKey(`user:${userid}:posts:isOccupied`))
+
+    //     const postHandler = (post:ExtendedPost)=>{
+           
+    //         toast.custom((t)=>(
+    //             <OccupiedByToast 
+    //             t={t}
+    //             postId={post.id}
+    //             />
+    //         ))
+    //     }
+    //     return () =>{
+    //         pusherClient.unsubscribe(toPusherKey(`user:${userid}:posts`))
+
+    //         pusherClient.unsubscribe(toPusherKey(`user:${userid}:posts:isOccupied`))
+    
+    //     }
+    // },[])
+
+
+    const [seenPosts, setSeenPosts] = useState(new Set());
+
+  useEffect(() => {
+    console.log("Woring!!");
+    const handlePostOccupied = (post: Post) => {
+      if (!seenPosts.has(post._id)) {
+        console.log("WORKING!!")
+        toast.custom((t) => (
+            
+            <OccupiedByToast
+              t={t}
+              postId={post._id}
+            />
+          
+            ) )
+        setSeenPosts((prev) => new Set(prev).add(post._id));
+      }
+    };
+
+    pusherClient.subscribe(toPusherKey(`user:${user.id}:posts`));
+    pusherClient.bind("postOccupied", handlePostOccupied);
+
+    return () => {
+      pusherClient.unsubscribe(toPusherKey(`user:${user.id}:posts`));
+      pusherClient.unbind("postOccupied", handlePostOccupied);
+    };
+  }, [user.id, seenPosts]);
+
+
+
+
     return (
 <nav className="topbar">
     <Link href="/" className="flex items-center gap-4">
@@ -53,7 +159,7 @@ async function Topbar   (){
     </div>
     <div className="hidden md:block">
     <Link href={`/profile/${user.id}`} className="flex flex-row">
-                <Image src={user.image}
+                <Image src={imagelink}
                 alt="user profile"
                 className="rounded-full cursor-pointer mr-2 ml-2 "
                 width={25}  
