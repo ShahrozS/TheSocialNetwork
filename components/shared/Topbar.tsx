@@ -95,6 +95,7 @@ interface topbarprops{
             <OccupiedByToast
               t={t}
               postId={post._id}
+              postText={post.text}
             />
           
             ) )

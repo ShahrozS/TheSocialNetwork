@@ -7,13 +7,15 @@ import toast, {type Toast} from 'react-hot-toast'
 
 
 interface occupiedByToastprop {
-    t:Toast
-    postId:string
+    t:Toast;
+    postId:string;
+    postText:string;
     
 }
-const OccupiedByToast =  ({t,postId}:occupiedByToastprop) =>{
+const OccupiedByToast =  ({t,postId,postText}:occupiedByToastprop) =>{
 
-     console.log("In Occupied Toas!!!");    
+    
+     console.log("In Occupied Toas!!!" + postText);    
     return(
 
         <div className={cn(
@@ -29,7 +31,7 @@ const OccupiedByToast =  ({t,postId}:occupiedByToastprop) =>{
                     </div>
 
                     <div className="ml-3 flex-1">
-                         <p className='text-sm font-medium text-gray-900'>A person joined your </p>
+                         <p className='text-sm font-medium text-gray-900'>A person just joined your {postText} activity! Open to look for new messages!</p>
                     
                     </div>
                 </div>

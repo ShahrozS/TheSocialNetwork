@@ -126,9 +126,9 @@ export async function fetchPostById(id : string){
     );
     
 
-    const newPost = await fetchPostById(id);
+    const newPost = await fetchPostById(post._id);
     
-
+console.log("Updated post: " + newPost  );
 
 
             
