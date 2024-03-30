@@ -19,7 +19,9 @@ children
 }:{children:React.ReactNode}){
 return (<ClerkProvider>
     <html lang="en">
-<body className={`${inter.className} bg-dark-1`}>
+<body className={`${inter.className} bg-dark-1 flex-col flex justify-center align-middle h-screen items-center `}>
+    <h1  className="text-heading1-bold text-white font-sans mb-10 ">TheSocialNetwork</h1>
+
     {children}
 </body>
     </html>
