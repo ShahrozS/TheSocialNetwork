@@ -2,6 +2,7 @@ import PostPage from '@/components/cards/PostPage';
 import { fetchPostById } from '@/lib/actions/post.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 import {currentUser} from '@clerk/nextjs'; 
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
 const Page = async ({params}:{params:{id:string}}) =>{
@@ -22,10 +23,13 @@ const Page = async ({params}:{params:{id:string}}) =>{
 
     if(!post) redirect('/');
 
+
 return(
+    
+  
     <PostPage
             key={post._id}
-            id={post._id}
+            id={post._id.toString()}
             currentUserId={user?.id || ""}
             content = {post.text}
             author = {post.author}
@@ -37,7 +41,11 @@ return(
             occupiedBy = {post.occupiedBy}
 
    />
+             
 
+   
+
+   
 )
 }
 

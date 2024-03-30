@@ -81,12 +81,12 @@ dateEnd.setMinutes(minutes2);
 
 {currentUserId!=author.id?
 (<Link
-    href={`/post/${id}`}
+    href={`/dashboard/post/${id}`}
     >
             <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Join!</button>
             </Link>):(     
                <Link
-               href={`/post/${id}`}
+               href={`/dashboard/post/${id}`}
                > 
                 <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Open</button>
                 </Link>)}

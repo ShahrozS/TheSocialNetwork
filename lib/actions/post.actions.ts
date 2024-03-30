@@ -32,8 +32,6 @@ export async function createPost({
     try{
         connectToDB();
 
-        expireAt = new Date(expireAt);
-        console.log("Expiriyt in database: " + expireAt);
         const createdPost = await Post.create({
             text,author,venue,timeStart,timeEnd,isOccupied,occupiedBy,expireAt
         });

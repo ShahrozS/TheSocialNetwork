@@ -4,7 +4,7 @@
 import { fetchUser } from "@/lib/actions/user.actions";
 import { pusherClient } from "@/lib/pusher";
 import { toPusherKey } from "@/lib/utils";
-import { OrganizationSwitcher, SignOutButton, SignedIn, currentUser } from "@clerk/nextjs";
+import { OrganizationSwitcher, SignOutButton, SignedIn, currentUser, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -49,10 +49,14 @@ interface topbarprops{
 }
 
  function Topbar   ({userid,user}:topbarprops){
+
+  
+
+
     if(userid==null) return;
     
-
- const imagelink = user.image?user.image:""; 
+console.log("In Top bar!");
+const imagelink = user.image?user.image:""; 
 
 
 
@@ -103,14 +107,14 @@ interface topbarprops{
       }
     };
 
-    pusherClient.subscribe(toPusherKey(`user:${user.id}:posts`));
+    pusherClient.subscribe(toPusherKey(`user:${user?.id}:posts`));
     pusherClient.bind("postOccupied", handlePostOccupied);
 
     return () => {
-      pusherClient.unsubscribe(toPusherKey(`user:${user.id}:posts`));
+      pusherClient.unsubscribe(toPusherKey(`user:${user?.id}:posts`));
       pusherClient.unbind("postOccupied", handlePostOccupied);
     };
-  }, [user.id, seenPosts]);
+  }, [user?.id, seenPosts]);
 
 
 
@@ -119,8 +123,8 @@ interface topbarprops{
 <nav className="topbar">
     <Link href="/" className="flex items-center gap-4">
 
-        <Image src="/assets/logo.svg" alt ="logo" width = {28} height = {28}></Image>
-        <p className="text-heading3-bold text-[#f3f0ed] max-xs:hidden">TheSocialNetwork</p>
+        <Image src="/assets/logo.svg" alt ="logo" width = {68} height = {68}></Image>
+        <p className=" text-[#f3f0ed] max-xs:hidden font-serif text-heading2-semibold ">TheSocialNetwork</p>
     </Link>
 
 
@@ -159,14 +163,14 @@ interface topbarprops{
 
     </div>
     <div className="hidden md:block">
-    <Link href={`/profile/${user.id}`} className="flex flex-row">
+    <Link href={`/dashboard/profile/${user?.id}`} className="flex flex-row">
                 <Image src={imagelink}
                 alt="user profile"
                 className="rounded-full cursor-pointer mr-2 ml-2 "
                 width={25}  
                 height={15}
                 />
-               <h4 className="cursor-pointer text-base-semibold text-[#f3f0ed]">{user.name}</h4>
+               <h4 className="cursor-pointer text-base-semibold text-[#f3f0ed]">{user?.name}</h4>
               
                 </Link>
     </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../globals.css";
+
+import '../../globals.css';
+
 import { ClerkProvider, currentUser } from "@clerk/nextjs";
 
 
@@ -10,34 +12,39 @@ import RightSidebar from "@/components/shared/RightSidebar";
 import Bottombar from "@/components/shared/Bottombar";
 import { fetchUser } from "@/lib/actions/user.actions";
 import Providers from "@/components/Providers";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata= {
-  title: 'theSocialNetwork',
+  title: 'TheSocialNetwork',
   description: 'A University Social Network Application',
 }
 
 
 
-export default async function RootLayout({
+const Layout = async ({
   children,
 }: {
   children: React.ReactNode;
-}) {
+})=> {
 
 
   const userid = await currentUser();
-  if(!userid) return;
-  const user = await fetchUser(userid.id);
+  if(!userid) return
+  if(!userid) redirect('/sign-up');
 
+  const user = await fetchUser(userid.id);
+  if(!user) return
+
+  
   return (
     <ClerkProvider>
    <html lang='en'>
         <body className={inter.className}>
           
           <Providers>
-          <Topbar userid={userid.id} user={JSON.parse(JSON.stringify(user))} />
+          <Topbar userid = {userid.id} user = {JSON.parse(JSON.stringify(user))} />
 
           <main className='flex flex-row'>
             <LeftSidebar />
@@ -55,3 +62,4 @@ export default async function RootLayout({
     </ClerkProvider>
   );
 }
+export default Layout

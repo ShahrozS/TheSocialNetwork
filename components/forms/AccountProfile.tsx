@@ -113,7 +113,7 @@ const onSubmit = async (values: z.infer<typeof UserValidation>) => {
   
    );
 
-   if(pathname === '/profile/edit'){
+   if(pathname === '/dashboard/profile/edit'){
     router.back();
    }
    else{
@@ -137,7 +137,7 @@ return(
                 priority
                 className="rounded-full object-contain"
                 />): (
-                    <Image src="/assets/profile.svg"
+                    <Image src="/assets/dashboard/profile.svg"
                     alt="Profile Photo"
                     width={96}
                     height={96}

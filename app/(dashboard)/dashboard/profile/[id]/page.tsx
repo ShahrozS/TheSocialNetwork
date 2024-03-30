@@ -31,7 +31,7 @@ return(
         />
 
        <div className="mt-9">
-        <Tabs defaultValue="PreviousPosts" className="w-full">
+        <Tabs defaultValue="ActivePosts" className="w-full">
             <TabsList className="tab">
                 {profileTabs.map((tab)=>(
                     <TabsTrigger key={tab.label} value={tab.value} className="tab">
@@ -44,7 +44,7 @@ return(
 
                         />
                         <p className="max-sm:hidden">{tab.label}</p>
-                        {tab.label === 'Posts' && (<p className="ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2">{userInfo?.posts?.length} </p>)}
+                        {tab.label === 'Posts' && (<p className="ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-white">{userInfo?.posts?.length} </p>)}
                     </TabsTrigger>
                 ))}
             </TabsList>

@@ -2,12 +2,15 @@
 import { createChat } from "@/lib/actions/chat.actions";
 import { updateOccupationById } from "@/lib/actions/post.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
-import { chatHrefConstructor } from "@/lib/utils";
-import { redirect } from "next/navigation";
+import { chatHrefConstructor, toPusherKey } from "@/lib/utils";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {toast} from "react-hot-toast";
 import OccupiedByToast from "../toast/occupiedbytoast";
+import { useEffect, useState } from "react";
+import { pusherClient } from "@/lib/pusher";
+import UnseenMessageCount from "./unseenmsgcounter";
 
 interface Props{
 
@@ -19,7 +22,7 @@ interface Props{
     image:string;
     id:string;
     }
-    createdAt :string;
+    createdAt :Date;
     venue :string;
     timeStart :string;
     timeEnd :string; 
@@ -38,9 +41,11 @@ const PostPage = async ({
     timeStart,
     timeEnd,
     isOccupied,
-    occupiedBy
+    occupiedBy,
+    
 
 }:Props) =>{
+ 
    
     const handle = () =>{
         createChat(chatHrefConstructor(author.id,occupiedBy));
@@ -59,10 +64,27 @@ const PostPage = async ({
     console.log("Post is already  updated!" + currentUserId)
 }
 
+
+
 const occupiedByGuy = await fetchUser(occupiedBy);
 
-if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author.id);
-    return (
+
+
+
+
+
+
+
+var ChatCountUser = "";
+
+
+
+if(occupiedByGuy) {
+     ChatCountUser = currentUserId == author.id? occupiedByGuy.id:author.id;
+
+    console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author.id);
+
+}return (
     
 
 
@@ -75,7 +97,7 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
 
             <div className="flex flex-row text-[#f3f0ed] mt-5">
                 Activity Initiated by: 
-               <Link href={`/profile/${author.id}`} className="flex flex-row">
+               <Link href={`/dashboard/profile/${author.id}`} className="flex flex-row">
                 <Image src={author.image}
                 alt="user profile"
                 className="rounded-full cursor-pointer mr-2 ml-2 "
@@ -88,12 +110,14 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
                )}
                 </Link>
             </div>
+
+
             {!occupiedByGuy && currentUserId==author.id?
             (<p className="text-[#f3f0ed]">No one has joined the activity yet!</p>)
             :
             currentUserId==author.id?( <div className="flex flex-row text-[#f3f0ed] mt-5">
            
-           <Link href={`/profile/${author.id}`} className="flex flex-row">
+           <Link href={`/dashboard/profile/${author.id}`} className="flex flex-row">
             <Image src={occupiedByGuy.image}
             alt="user profile"
             className="rounded-full cursor-pointer mr-2 ml-2 "
@@ -109,46 +133,18 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
             <div className="flex flex-row mt-52 mr-3 mb-3 self-end" >
                
 
-           {/* {
-            !occupiedByGuy? (  <></>
-            ):
-            occupiedBy && currentUserId===author.id && occupiedByGuy?(
-                <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold"> Chat with {occupiedByGuy.name}</p>
-                <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
-                 
-                <Image
-                    src={'/assets/chat.svg'}
-                    alt='chat'
-                    width={54}
-                    height={54}
-                    className="cursor-pointer text-white"           
-                />
-                </Link>
-                </> 
-
-           ): ( <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold">Confused about the location? Have a chat with {author.name}</p>
-           <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
-            
-           <Image
-               src={'/assets/chat.svg'}
-               alt='chat'
-               width={54}
-               height={54}
-               className="cursor-pointer text-white"           
-           />
-           </Link>
-           </> 
            
-           
-           )}     */}
 
 
            {
-           
+           //User is not the author
             currentUserId!==author.id?(
                 <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold">Confused about the location? Have a chat with {author.name}</p>
-           <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
-            
+           <Link href={`/dashboard/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+         
+         
+           <div className="relative">
+<UnseenMessageCount ChatCountUser={ChatCountUser} currentUserId={currentUserId}/>
            <Image
                src={'/assets/chat.svg'}
                alt='chat'
@@ -156,6 +152,7 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
                height={54}
                className="cursor-pointer text-white"           
            />
+           </div>
            </Link>
            </> 
            
@@ -163,18 +160,25 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
             )
             :
             occupiedByGuy && currentUserId == author.id?(
-                <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold"> Chat with {occupiedByGuy.name}</p>
-                <Link href={`/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+                <>
+                
+                <p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold"> Chat with {occupiedByGuy.name}</p>
+                <Link href={`/dashboard/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
                  
+                 <div className="relative">
+                 <UnseenMessageCount ChatCountUser={ChatCountUser} currentUserId={currentUserId}/>
+
                 <Image
                     src={'/assets/chat.svg'}
                     alt='chat'
                     width={54}
                     height={54}
-                    className="cursor-pointer text-white"           
+                    className="cursor-pointer text-white shadow-lg"           
                 />
+              </div>
                 </Link>
                 </> 
+              
             ):(<></>)
            }
                
@@ -189,3 +193,8 @@ if(occupiedByGuy) console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author
 }
 
 export default PostPage;
+
+
+
+
+

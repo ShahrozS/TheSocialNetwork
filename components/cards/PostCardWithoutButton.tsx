@@ -35,13 +35,13 @@ const PostCardWithoutButton = ({
 
 <div className="flex flex-col">
 
-    <h2 className=" text-head-text-1 text-light-2">
+    <h2 className=" text-head-text-1 text-text-large">
         {content}
     </h2>
-    <h4 className="text-base1-semibold text-light-2">
+    <h4 className="text-base1-semibold text-white">
       At  {venue} 
     </h4>
-    <h5 className="text-small-regular text-light-2 mt-2">
+    <h5 className="text-small-regular text-[#e7e4e4] mt-2">
         {timeStart} - {timeEnd}
     </h5>
     </div>

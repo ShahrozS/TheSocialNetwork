@@ -12,19 +12,19 @@ export const sidebarLinks = [
   
     {
       imgURL: "/assets/create.svg",
-      route: "/create-post",
+      route: "/dashboard/create-post",
       label: "Create Post",
     },
   
     {
       imgURL: "/assets/user.svg",
-      route: "/profile",
+      route: "/dashboard/profile",
       label: "Profile",
     },
   ];
   
   export const profileTabs = [
-    { value: "PreviousPosts", label: "Previous Posts", icon: "/assets/reply.svg" },
+    { value: "ActivePosts", label: "Active Posts", icon: "/assets/reply.svg" },
   ];
   
   export const communityTabs = [

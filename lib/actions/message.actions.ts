@@ -55,6 +55,7 @@ export async function sendMessage(
 
         console.log("Message sent succesfully");
       pusherServer.trigger(toPusherKey(`chat:${chatId}`),'incoming-message',messageData);
+      pusherServer.trigger(toPusherKey(`user:${partner.id}`),'new_message',messageData);
 
     } catch(err:any){
         console.log("Failed To send Message :" + err)
