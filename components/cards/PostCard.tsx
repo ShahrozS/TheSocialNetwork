@@ -67,7 +67,7 @@ dateEnd.setMinutes(minutes2);
    
    console.log("AUTHOR:::"+ currentUserId)
     return (
-        <article className ="flex w-full  items-center flex-row  justify-between rounded-xl bg-bg-secondary p-7" >
+        <article className ="flex w-full  items-center flex-row  justify-between rounded-xl bg-bg-secondary  p-7" >
 
 <div className="flex flex-col">
 

@@ -162,7 +162,6 @@ if(occupiedByGuy) {
          
          
            <div className="relative">
-<UnseenMessageCount ChatCountUser={ChatCountUser} currentUserId={currentUserId}/>
            <Image
                src={'/assets/chat.svg'}
                alt='chat'
@@ -184,7 +183,7 @@ if(occupiedByGuy) {
                 <Link href={`/dashboard/chat/${chatHrefConstructor(authorUser.id,occupiedBy)}`}>
                  
                  <div className="relative">
-                 <UnseenMessageCount ChatCountUser={ChatCountUser} currentUserId={currentUserId}/>
+                 { /*Implement Message count here. <UnseenMessageCount ChatCountUser={ChatCountUser} currentUserId={currentUserId}/> */}
 
                 <Image
                     src={'/assets/chat.svg'}

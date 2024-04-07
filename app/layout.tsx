@@ -20,12 +20,12 @@ export default async function  RootLayout({
 
 
     return (
-      <>
+    
     <html lang='en'>
       <body>
       {children}
       </body>
     </html>
-    </>
+   
   )
 }

@@ -45,7 +45,7 @@ const Layout = async ({
   console.log("SHDDSHISHDI")
 
   return (
-    <ClerkProvider>  <Providers>
+    <ClerkProvider>  
    <html lang='en'>
         <body className={inter.className}>
           
@@ -65,7 +65,6 @@ const Layout = async ({
           </Providers>
         </body>
       </html>
-      </Providers>
     </ClerkProvider>
   );
 }

@@ -195,7 +195,7 @@ module.exports = {
     extend: {
     
       colors: {
-        "bg-secondary":"#382c44",
+        "bg-secondary":"#181818",
         "bg-primary":"#fff4e4",
         "bg-button":"#c0b4c4",
         "bg-bars":"#605474",
