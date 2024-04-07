@@ -8,6 +8,8 @@ import { fetchUser } from "./user.actions";
 import { pusherServer } from "../pusher";
 import { Document } from "mongoose";
 import { toPusherKey } from "../utils";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Params{
     text: string,
@@ -133,6 +135,9 @@ console.log("Updated post: " + newPost  );
     console.log('post updated successfully' +isOccupied + " " + userId);
 
     pusherServer.trigger(toPusherKey(`user:${newPost.author.id}:posts`), 'postOccupied', newPost);
+
+    var router = useRouter();
+    router.refresh();
 
 }
     catch(err:any){

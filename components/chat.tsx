@@ -23,6 +23,8 @@ const Chat = async ({chatid}:props)=>{
     
     const userInfo = await fetchUser(user.id);
     if (!userInfo?.onboarded) redirect("/");
+
+    console.log("User id1: " + userId1 + "user id2: " + userId2 + " Current user: " + user.id + "  partner: " + userInfo.id)
     if(user.id!==userId1 && user.id !==  userId2){
         console.log("Redirecting")
     redirect("/");

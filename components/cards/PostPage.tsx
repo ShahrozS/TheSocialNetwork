@@ -1,4 +1,3 @@
-
 import { createChat } from "@/lib/actions/chat.actions";
 import { updateOccupationById } from "@/lib/actions/post.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
@@ -11,6 +10,7 @@ import OccupiedByToast from "../toast/occupiedbytoast";
 import { useEffect, useState } from "react";
 import { pusherClient } from "@/lib/pusher";
 import UnseenMessageCount from "./unseenmsgcounter";
+import { format } from "date-fns";
 
 interface Props{
 
@@ -46,7 +46,7 @@ const PostPage = async ({
 
 }:Props) =>{
  
-   
+
     const handle = () =>{
         createChat(chatHrefConstructor(author.id,occupiedBy));
     }
@@ -55,8 +55,10 @@ const PostPage = async ({
 {
     if(currentUserId!=author.id){
 
-    
+        console.log("updateding!!")
        updateOccupationById(id,true,currentUserId);
+
+
 
 
     }
@@ -64,12 +66,28 @@ const PostPage = async ({
     console.log("Post is already  updated!" + currentUserId)
 }
 
+//TODO: if current user is not equal to occupied by NOR the author, redirect him out.
 
-
+console.log( author.id + "+++" + occupiedBy);
 const occupiedByGuy = await fetchUser(occupiedBy);
 
+// formating time 
+const starttime = timeStart;
+const [hours2, minutes2] = starttime.split(":").map(Number);
+
+const dateStart = new Date();
+dateStart.setHours(hours2);
+dateStart.setMinutes(minutes2);
+
+   const formatetime= (time:Date)=>{
+    return format(time," p")
+   }
+   
 
 
+   const authorUser = await fetchUser(author.id);
+
+   
 
 
 
@@ -82,18 +100,18 @@ var ChatCountUser = "";
 if(occupiedByGuy) {
      ChatCountUser = currentUserId == author.id? occupiedByGuy.id:author.id;
 
-    console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author.id);
+    console.log("occupiedBy: "+occupiedByGuy.id + " --- " + author.id + " " + isOccupied + " aurthoruser " + authorUser.id  );
 
 }return (
     
-
+  
 
         <div className="flex flex-col relative bg-bg-secondary p-5 rounded-lg ">
        
        <div>
             <h1 className="text-heading-large text-text-large">{content}</h1>
             <h1 className="text-heading-md text-white">Reach {venue}</h1>
-            <h1 className="text-heading-md text-white">By {timeStart}</h1>
+            <h1 className="text-heading-md text-white">By {formatetime(dateStart)}</h1>
 
             <div className="flex flex-row text-[#f3f0ed] mt-5">
                 Activity Initiated by: 
@@ -139,8 +157,8 @@ if(occupiedByGuy) {
            {
            //User is not the author
             currentUserId!==author.id?(
-                <><p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold">Confused about the location? Have a chat with {author.name}</p>
-           <Link href={`/dashboard/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+                <><p className="text-[#f3f0ed] mt-4 lg:mr-3  sm:text-small-semibold lg:text-body-semibold">Confused about the location? Have a chat with {author.name}</p>
+           <Link href={`/dashboard/chat/${chatHrefConstructor(authorUser.id,currentUserId)}`}>
          
          
            <div className="relative">
@@ -150,7 +168,7 @@ if(occupiedByGuy) {
                alt='chat'
                width={54}
                height={54}
-               className="cursor-pointer text-white"           
+               className="cursor-pointer xs:mt-4 sm:mt-4 text-white"           
            />
            </div>
            </Link>
@@ -163,7 +181,7 @@ if(occupiedByGuy) {
                 <>
                 
                 <p className="text-[#f3f0ed] mt-4 mr-3 text-body-semibold"> Chat with {occupiedByGuy.name}</p>
-                <Link href={`/dashboard/chat/${chatHrefConstructor(author.id,occupiedBy)}`}>
+                <Link href={`/dashboard/chat/${chatHrefConstructor(authorUser.id,occupiedBy)}`}>
                  
                  <div className="relative">
                  <UnseenMessageCount ChatCountUser={ChatCountUser} currentUserId={currentUserId}/>
@@ -189,7 +207,9 @@ if(occupiedByGuy) {
             </div>
 
         </div>
-    )
+   
+               
+        )
 }
 
 export default PostPage;

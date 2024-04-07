@@ -18,7 +18,6 @@ const result =  await fetchPosts(1,30);
 
 
 
-console.log(result);
   return (
     <>
       
@@ -30,7 +29,7 @@ console.log(result);
 
 <div className="flex items-center justify-start text-start">
   <div className="border-b border-light-2 w-10"></div>
-  <h1 className="text-light-2 text-heading-md px-4">Your Active Posts</h1>
+  <h1 className="text-light-2 lg:text-heading-md md:lg:text-heading-md xm: text-base-semibold px-4">Your Active Posts</h1>
   <div className="flex-grow border-b border-light-2"></div>
 </div>
           {result.posts.filter(post =>post.author.id === (user?.id||"")).map(post=>(
@@ -45,6 +44,8 @@ console.log(result);
           venue = {post.venue}
           timeStart = {post.timeStart}
           timeEnd = {post.timeEnd}
+          occupiedBy = {post.occupiedBy}
+          isOccupied = {post.isOccupied}
 
           />
             
@@ -52,7 +53,7 @@ console.log(result);
 
 <div className="flex items-center justify-start text-start">
   <div className="border-b border-light-2 w-10"></div>
-  <h1 className="text-light-2 text-heading-md  px-4">Recent Posted Activities</h1>
+  <h1 className="text-light-2 lg:text-heading-md md:lg:text-heading-md xm: text-base-semibold  px-4">Recent Posted Activities</h1>
   <div className="flex-grow border-b border-light-2"></div>
 </div>       
          {result.posts.filter(post =>post.author.id !== (user?.id||"")).map(post=>(
@@ -67,7 +68,8 @@ console.log(result);
          venue = {post.venue}
          timeStart = {post.timeStart}
          timeEnd = {post.timeEnd}
-
+        occupiedBy = {post.occupiedBy}
+        isOccupied = {post.isOccupied}
          />
            
          ))}

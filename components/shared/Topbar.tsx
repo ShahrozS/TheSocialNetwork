@@ -121,10 +121,10 @@ const imagelink = user.image?user.image:"";
 
     return (
 <nav className="topbar">
-    <Link href="/" className="flex items-center gap-4">
+    <Link href="/" className="flex items-center gap-1">
 
-        <Image src="/assets/logo.svg" alt ="logo" width = {68} height = {68}></Image>
-        <p className=" text-[#f3f0ed] max-xs:hidden font-serif text-heading2-semibold ">TheSocialNetwork</p>
+        <Image src="/assets/logo.svg" alt ="logo" width = {38} height = {38}></Image>
+        <p className=" text-[#f3f0ed] max-xs:hidden font-serif text-heading3-bold">TheSocialNetwork</p>
     </Link>
 
 

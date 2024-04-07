@@ -149,3 +149,6 @@ remove occupied posts from the home
 
 
 //implement pusher funcitons
+
+
+if a post is occupied only the occupied one can access and the author can access other wise the button should be disabled? or the post just dont just dont show there. 

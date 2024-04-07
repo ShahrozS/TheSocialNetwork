@@ -62,7 +62,7 @@ const UnseenMessageCount = ({
     
 
 return(
-    <div className="absolute shadow-count-badge  left-9 rounded-full bg-red-500 w-7 h-7 justify-center flex text-center items-center text-white     text-body1-bold font-medium ">{unseenMessagesCount}</div>
+    <div className="absolute shadow-count-badge  sm:right-14 xs:right-1 left-9 rounded-full bg-red-500 w-7 h-7 justify-center flex text-center items-center text-white     text-body1-bold font-medium ">{unseenMessagesCount}</div>
 
 )
 

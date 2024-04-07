@@ -19,6 +19,8 @@ interface Props{
     venue :string;
     timeStart :string;
     timeEnd :string; 
+    occupiedBy: string;
+    isOccupied: boolean;
 }
 
 
@@ -33,7 +35,8 @@ const PostCard = ({
     venue,
     timeStart,
     timeEnd,
-
+    occupiedBy,
+    isOccupied,
 }:Props) =>{
 
 
@@ -79,17 +82,29 @@ dateEnd.setMinutes(minutes2);
     </h5>
     </div>
 
-{currentUserId!=author.id?
-(<Link
-    href={`/dashboard/post/${id}`}
-    >
-            <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Join!</button>
-            </Link>):(     
-               <Link
-               href={`/dashboard/post/${id}`}
-               > 
-                <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Open</button>
-                </Link>)}
+{/* if current user is author show the open button if hes the one who joined the activity show open to him too , if the user is new on home screen show join, if the post is already joined by someoone show occupied */}
+
+                            {
+                                currentUserId === author.id? (<Link
+                                    href={`/dashboard/post/${id}`}
+                                    > 
+                                     <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Open</button>
+                                     </Link>)
+                                :
+                                isOccupied && currentUserId === occupiedBy?(<Link
+                                    href={`/dashboard/post/${id}`}
+                                    > 
+                                     <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Open</button>
+                                     </Link>)
+                                :
+                                !isOccupied && (currentUserId !== occupiedBy && currentUserId!==author.id)?(<Link
+                                    href={`/dashboard/post/${id}`}
+                                    >
+                                            <button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold " >Join!</button>
+                                            </Link>)
+                                :(<button  className=" bg-bg-button mr-6 text-button rounded-full items-center text-center self-center w-28 h-12  text-base1-semibold opacity-70" disabled >Occupied!</button>)
+
+                            }
 
 
 
