@@ -31,15 +31,21 @@ const Layout = async ({
 
 
   const userid = await currentUser();
-  if(!userid) return
-  if(!userid) redirect('/sign-up');
+
+  if(!userid) redirect('/sign-in');
 
   const user = await fetchUser(userid.id);
   if(!user) return
 
-  
+
+
+  if(!user.onboarded) redirect("/onboarding");
+  console.log("Checking logins " + userid + " " + user);
+
+  console.log("SHDDSHISHDI")
+
   return (
-    <ClerkProvider>
+    <ClerkProvider>  <Providers>
    <html lang='en'>
         <body className={inter.className}>
           
@@ -59,6 +65,7 @@ const Layout = async ({
           </Providers>
         </body>
       </html>
+      </Providers>
     </ClerkProvider>
   );
 }

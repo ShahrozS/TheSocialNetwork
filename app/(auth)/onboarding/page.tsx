@@ -11,7 +11,8 @@ async function Page(){
 
 
     const userInfo = await fetchUser(user.id);
-    if (userInfo?.onboarded) redirect("/");
+  
+    if (userInfo?.onboarded) redirect("/dashboard");
 
     const email = user.emailAddresses?.map((emailAddress) => (
                   emailAddress.emailAddress));
@@ -28,11 +29,11 @@ async function Page(){
         image: userInfo?.image || user?.imageUrl,
     }  
     return(
-<main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
-    <h1 className="head-text">Welcome!</h1>
+<main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-1">
+    <h1 className="text-white text-heading3-bold">Welcome!</h1>
 
 
-        <p className="mt-3 text-base-regular text-light-2">Complete your profile now, to use TheSocialNetwork</p>
+        <p className="mt-3 text-base-regular text-white">Complete your profile now, to use TheSocialNetwork</p>
 
         <section className="mt-9 bg-dark-2 p-10">
 

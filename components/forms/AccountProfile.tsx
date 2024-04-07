@@ -117,7 +117,7 @@ const onSubmit = async (values: z.infer<typeof UserValidation>) => {
     router.back();
    }
    else{
-    router.push('/');
+    router.push('/dashboard');
    }
   }
 
@@ -164,7 +164,7 @@ return(
         name="name"
         render={({ field }) => (
           <FormItem className="flex  flex-col w-full gap-3">
-            <FormLabel className="text-base-semibold text-light-2">
+            <FormLabel className="text-base-semibold text-white">
           Name
             </FormLabel>
             <FormControl className="">
@@ -183,7 +183,7 @@ return(
         name="username"
         render={({ field }) => (
             <FormItem className="flex  flex-col w-full gap-3">
-            <FormLabel className="text-base-semibold text-light-2">
+            <FormLabel className="text-base-semibold text-white">
           Email
             </FormLabel>
             <FormControl className="">
@@ -200,7 +200,7 @@ return(
         name="bio"
         render={({ field }) => (
             <FormItem className="flex  flex-col w-full gap-3">
-            <FormLabel className="text-base-semibold text-light-2">
+            <FormLabel className="text-base-semibold text-white">
           Bio
             </FormLabel>
             <FormControl className="">
@@ -213,7 +213,7 @@ return(
           </FormItem>
         )}
       />
-      <Button type="submit">Submit</Button>
+      <Button className="bg-bg-button text-dark-1 hover:bg-bg-primary hover:text-dark-1"  type="submit">Submit</Button>
     </form>
   </Form>
 

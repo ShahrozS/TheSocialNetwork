@@ -22,7 +22,7 @@ const OccupiedByToast =  ({t,postId,postText}:occupiedByToastprop) =>{
             'max-wmd w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5',
             {'animate-enter':t.visible,'animate-leave':!t.visible}
         )}>
-             <a onClick={() => toast.dismiss(t.id)} href={`/post/${postId}`}
+             <a onClick={() => toast.dismiss(t.id)} href={`dashboard/post/${postId}`}
              className='flex-1 w-0 p-4'
              >
                 <div className="flex items-start">
