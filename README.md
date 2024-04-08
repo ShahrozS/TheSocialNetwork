@@ -1,4 +1,3 @@
-![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/09e42ac5-0e6f-49aa-b2c5-2120d101e181)![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/4dcd0217-c039-4375-81c4-27131a3749f1)This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 # The Social Network
 A full stack webapplication build with Next JS 14, React, Mongo DB.
 Several libraries used such as
