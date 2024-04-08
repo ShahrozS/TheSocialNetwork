@@ -1,4 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/09e42ac5-0e6f-49aa-b2c5-2120d101e181)![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/4dcd0217-c039-4375-81c4-27131a3749f1)This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Social Network
+A full stack webapplication build with Next JS 14, React, Mongo DB.
+Several libraries used such as
+-Clerk
+-ShadCN UI
+-Zod
+-Pusher
+
+## Problem Statment
+
+Creating such a social platform for university where you can post and join activities when you are feeling lonely and want to kill time. 
+
+## User journey
+
+-> After authentication, create or join available posts. 
+-> Chat with the user to tell or ask about the location. 
+-> Posts are anonymous in order to randomize and make the hangouts more fun.
+-> Post will delete automatically at the ending time entered by the poster. 
+
+
+
 
 ## Getting Started
 
@@ -16,21 +37,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Preview
 
-## Learn More
+![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/aed2d75f-0457-4cbc-918e-ddbb86c158fd)
+![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/9e31b715-7792-4ef8-b914-302c2b3536fd)
+![image](https://github.com/ShahrozS/TheSocialNetwork/assets/90262892/8996ddac-52da-4b88-a0e6-1b77f7d96f9a)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
