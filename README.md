@@ -12,7 +12,7 @@ Creating such a social platform for university where you can post and join activ
 
 ## User journey
 
--> After authentication, create or join available posts. 
+-> After authentication, create or join available posts. \n
 -> Chat with the user to tell or ask about the location. 
 -> Posts are anonymous in order to randomize and make the hangouts more fun.
 -> Post will delete automatically at the ending time entered by the poster. 
