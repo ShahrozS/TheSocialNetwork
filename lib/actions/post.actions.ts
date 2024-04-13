@@ -134,6 +134,7 @@ console.log("Updated post: " + newPost  );
             
     console.log('post updated successfully' +isOccupied + " " + userId);
 
+  
     pusherServer.trigger(toPusherKey(`user:${newPost.author.id}:posts`), 'postOccupied', newPost);
 
     var router = useRouter();

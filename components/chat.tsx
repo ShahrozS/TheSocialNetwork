@@ -13,7 +13,7 @@ import { redirect } from "next/navigation";
 interface props{
     chatid:string;
 }
-
+//fakefakekfakfkakf
 const Chat = async ({chatid}:props)=>{
     const [userId1,userId2] = chatid.split('--');
 

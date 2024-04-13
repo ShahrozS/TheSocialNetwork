@@ -94,6 +94,17 @@ const imagelink = user.image?user.image:"";
     const handlePostOccupied = (post: Post) => {
       if (!seenPosts.has(post._id)) {
         console.log("WORKING!!")
+
+
+        Notification.requestPermission().then(perm=>{
+            console.log("In notification.")
+            if(perm==="granted"){ new Notification(`${post.text} has been joined!`,{
+                
+                 body: `Your ${post.text} has been occupied! Visit to chat.`,
+             });
+            }});
+            
+
         toast.custom((t) => (
             
             <OccupiedByToast

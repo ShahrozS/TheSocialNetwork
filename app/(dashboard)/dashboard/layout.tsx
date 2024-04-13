@@ -40,7 +40,6 @@ const Layout = async ({
 
 
   if(!user.onboarded) redirect("/onboarding");
-  console.log("Checking logins " + userid + " " + user);
 
   console.log("SHDDSHISHDI")
 

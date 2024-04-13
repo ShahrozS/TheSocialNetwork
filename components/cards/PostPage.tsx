@@ -157,7 +157,7 @@ if(occupiedByGuy) {
            {
            //User is not the author
             currentUserId!==author.id?(
-                <><p className="text-[#f3f0ed] mt-4 lg:mr-3  sm:text-small-semibold lg:text-body-semibold">Confused about the location? Have a chat with {author.name}</p>
+                <><p className="text-[#f3f0ed] mr-3  lg:text-heading4-medium lg:mt-7 md:text-heading4-medium md:mt-7 xs:text-base-semibold  xs:mt-3 sm:mt-7 sm:text-heading4-medium">Confused about the location? Have a chat with {author.name}</p>
            <Link href={`/dashboard/chat/${chatHrefConstructor(authorUser.id,currentUserId)}`}>
          
          
